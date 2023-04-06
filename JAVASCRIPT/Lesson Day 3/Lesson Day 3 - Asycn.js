@@ -1,4 +1,4 @@
-/* CONTOH ASYNCHRONUS */
+/* -------------CONTOH ASYNCHRONUS--------------- */
 //yang dikerjakan yang duluan selesai
 /*
 const startEngine=()=>{
@@ -29,7 +29,7 @@ const DriveCar=(cb)=>{
 DriveCar(startEngine)
 */
 
-/* ------ Contoh 2------ */
+/* ------------- Contoh 2 -------------- */
 /*
 const getNomorAntri = (nomor)=>{
     setTimeout(()=>{
@@ -80,7 +80,7 @@ console.log(bill)
 */
 
 
-/* ------ MENGGUNAKAN SOLUSI CALLBACK ------ */
+/* ----------- MENGGUNAKAN SOLUSI CALLBACK ------------ */
 // Contoh
 /*
 const getNomorAntri = (nomor,cb)=>{
@@ -125,8 +125,8 @@ const tagihan = (paket)=>{
 getNomorAntri(1,pilihPaket)
 */
 
-/* CONTOH 2 */
-/* MENGGUNAKAN CALLBACK */
+/* -----------------CONTOH 2------------------- */
+/* ------------MENGGUNAKAN CALLBACK---------------- */
 /*
 const startEngine=()=>{
         console.log('Engine Start...')}
@@ -164,7 +164,7 @@ const mesinNyala=(gear,cb)=>{
 mesinNyala(4,changeCars)
 */
 
-/* ----- PROMISE CHAINING ----- */
+/* -------- PROMISE CHAINING -------- */
 /* Contoh 1 */
 /*
 function getNomorAntriChaining(nomor){
@@ -177,7 +177,7 @@ function getNomorAntriChaining(nomor){
 }
 */
 
-/* Contoh 2 DENGAN PROMIS CAHAINING*/
+/* ----------Contoh 2 DENGAN PROMISE CAHAINING-------------*/
 /* 
 function getNomorAntriChaining(nomor){
     return new Promise((resolve, reject) => {
@@ -238,7 +238,7 @@ result
 })
 */
 
-/* CONTOH 3 DENGAN METODE PROMIS CHAINING */
+/* -----------CONTOH 3 DENGAN METODE PROMIS CHAINING----------- */
 /*
 const startEngine=()=>{
     const result = new Promise ((resolve,reject) => {
@@ -311,7 +311,7 @@ result
 */
 
 
-/* ASYNC AWAIT */
+/* ------------ASYNC AWAIT-------------- */
 /*
 function getNomorAntriChaining(nomor){
     return new Promise((resolve, reject) => {
