@@ -11,7 +11,7 @@ abstract class TransportasiClassAbstract {
 
     getInfoPemilik(): string {
         return `Nama pemilik kendaraan :${this.namaPemilik}
-                telah membayar seharga ${this.getHargaKendaraan}`
+                telah membayar seharga ${this.getHargaKendaraan()}`
     }
 }
 //karana abstra tidak bisa instace objek makanya harus diturunin ke class
@@ -23,15 +23,14 @@ class TransportasiClass extends TransportasiClassAbstract{
     }
 
     getDiscount(): string;
-    getDiscount(disc:number):string
+    getDiscount(disc:number):string;
     getDiscount(disc?:any):any{
-        return(
-            (disc)?`Dapat potongan harga sebesar : ${this.harga = this.harga * disc}` : `Discount=0,harga normal`
-        )
+        return (disc)?`Dapat potongan harga sebesar : ${this.harga = this.harga * disc}` : `Discount=0,harga normal`
+        
     }
 
-    getStatemnet():string{
-        return`Selamat Datang di toko kami`
+    getStatement():string{
+        return `Selamat Datang di toko kami`
     }
     getHargaKendaraan():number{
         return this.harga
@@ -50,7 +49,7 @@ class TransportasiClass extends TransportasiClassAbstract{
 
 class Mobil extends TransportasiClass {
     constructor(namaPemilik:string, nama:string, jlhRoda: number,
-         jenis: string, warna : string, merek: string, harga:number,public bahanbakar: string,public status:boolean) {
+         jenis: string, warna : string, merek: string, harga:number,public bahanBakar: string,public status:boolean) {
         super(namaPemilik,nama,jlhRoda,jenis,warna,merek,harga)
     }
     getJumlahRoda():number{
@@ -61,24 +60,26 @@ class Mobil extends TransportasiClass {
     }
 
     getKendaraan():string{
-        return `${super.getInfoKendaraan}`
+        return `${super.getInfoKendaraan()}`
     }
     getBahanBakar(): string{
-        return `Bahan Bakar yang digunakan ${this.bahanbakar}`
+        return `Bahan Bakar yang digunakan ${this.bahanBakar}`
     }
 
     getInfo(): string {
-        return `${this.getKendaraan()},${this.getBahanBakar}`
+        return `${this.getKendaraan()},${this.getBahanBakar()}`
     }
 
-    getStatemnet(): string {
-        return (this.status)?`Terimakasih sudah berbelanja di toko kami`: super.getStatemnet()
+    getStatement(): string {
+        return (this.status)?`Terimakasih sudah berbelanja di toko kami`: super.getStatement()
     }
 }
 
-let mobilObj = new Mobil('John','Bus',6,'Transportasi umum','Biru','Mercy',1_000_000_000,'solar',false)
+let mobilObj = new Mobil('John','Bus',6,'Transportasi umum','Biru','Mercy',1_000_000_000,'solar',true)
 mobilObj.warna='Putih';
 
 
 (mobilObj.status)?console.log('\n'+mobilObj.getInfoPemilik()+
-'\n',mobilObj.getInfo()+'\n',mobilObj.getDiscount(0.5)+'\n',mobilObj.getStatemnet()):console.log(mobilObj.getStatemnet())
+'\n',mobilObj.getInfo()+'\n',mobilObj.getDiscount(0.5)+'\n',mobilObj.getStatement()):console.log(mobilObj.getStatement())
+
+
