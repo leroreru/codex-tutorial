@@ -74,7 +74,6 @@ custData.barang='Hoodie';
 (custData.status)?console.log(custData.getInfoPemilik()+'\n',custData.getDataBarang()+custData.getPhoneNumber()):console.log(custData.getStatement())
 
 
-
 // const customerData = new customer('John','Doe','Jln Jalan','092131231','Sepatu',2)
 // // customerData.firstName='Dany'
 // // customerData.setPhoneNumner('08123111')

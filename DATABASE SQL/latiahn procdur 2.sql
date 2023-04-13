@@ -1,7 +1,5 @@
 CREATE OR REPLACE PROCEDURE HumanResources.CreateNewEmployee1( 
 	
-	
-	
 	business_entityid int,
 	national_idnumber varchar,
 	login_id varchar,

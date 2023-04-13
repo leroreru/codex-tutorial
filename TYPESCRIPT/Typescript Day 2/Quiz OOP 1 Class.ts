@@ -167,7 +167,7 @@ class vehiclePurchase extends mobilAbstract implements mobil1 {
         // let IncomePerTipe:any= this.vehicle.filter((vehicle)=>vehicle.vehicleType==type).reduce((sum, current) => sum + current.total,0)
         // let TotalIncome:any = this.vehicle.reduce((sum, current) => sum + current.total,0)
         return (type)? `Total Income dari mobil ${type} : ${this.numberFormat(this.vehicle.filter((vehicle)=>vehicle.vehicleType==type).reduce((sum, current) => sum + current.total,0))}` : `Total Income keseluruhan : ${this.numberFormat(this.vehicle.reduce((sum, current) => sum + current.total,0))}`
-    
+
     }
     // getDataMobil(): string {
     //     return `${super.getDataMobil()} ${this.GetTotalVehicle()}`

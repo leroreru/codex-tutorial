@@ -174,7 +174,7 @@ class vehiclePurchase extends mobilAbstract implements mobil1 {
     }
 }
 
-interface incomeIn{
+interface incomeIn extends mobil1 {
     GetTotalIncomeVehicle():any
 }
 
@@ -187,7 +187,7 @@ class income extends vehiclePurchase implements incomeIn{
     GetTotalIncomeVehicle(type:string):string
     GetTotalIncomeVehicle(type?:any):any{
         let array3 = this.vehicle.map((obj, index) => Object.assign({}, obj, this.income1[index])); //merge array vehicle dan arrray income1 berdasarkan index
-       
+        
         return (type)? 
         `Total Income dari mobil ${type} : ${this.numberFormat(array3.filter((array3)=>array3.vehicleType==type).reduce((sum, current) => sum + current.total,0))}` : 
         `Total Income keseluruhan : ${this.numberFormat(array3.reduce((sum, current) => sum + current.total,0))}`
