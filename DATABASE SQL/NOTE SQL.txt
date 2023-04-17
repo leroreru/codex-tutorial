@@ -138,7 +138,7 @@ Didalam procedure bisa melakukan rollback
 FUNCTION > MEMAKAI RETURN
 
 
-create or replace procedure procedure_name(param_list
+create or replace procedure procedure_name(param_list)
 languague
 as
 $$

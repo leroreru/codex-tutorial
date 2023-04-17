@@ -1,5 +1,5 @@
 let s ='10'
-console.log(+s) //untuk mengkonvert number dari string menggunakan +x (unary plus)
+console.log(+s) //untuk mengkonvert string ke number  menggunakan +x (unary plus)
 
 
 /* Jika tidak menggunakan "Unary Plus" maka yang di tampilkan pada console adalah False/True,

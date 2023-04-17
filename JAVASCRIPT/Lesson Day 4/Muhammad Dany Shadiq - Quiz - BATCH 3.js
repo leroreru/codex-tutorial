@@ -28,18 +28,24 @@ const sumDigit=(n)=>{
     try{
         if (n >= 10000) { throw `${n} harus lebih kecil dari 10000`} // mengecek jika n lebih dari 10_000
         if (isNaN(n)) { throw `${n} is not number , try again`} // mengecek jika n adalah number
-        const num = n.toString().split('')//menkonvert n menjadi array dengan split agar bisa menggunkan function reduce 
+        // const num = n.toString().split('')//menkonvert n menjadi array dengan split agar bisa menggunkan function reduce 
     
-        const sum =  num.reduce((a,b) => Number(a) + Number(b)) // untuk menambahkan data yang ada di dalam array
+        // const sum =  num.reduce((a,b) => Number(a) + Number(b)) // untuk menambahkan data yang ada di dalam array
 
-        console.log(sum)
+        let total =0
+        for(let i of n){
+            total +=+i
+        }
+
+        console.log(total)
     } catch(e) {
         console.log(e)
     } 
 }
-sumDigit(10000) // 10000 harus lebih kecil dari 10000
+sumDigit('9999') // 10000 harus lebih kecil dari 10000
 // sumDigit('a222') // a222 is not number , try again
 // sumDigit(9999) // 36
+
 
 
 

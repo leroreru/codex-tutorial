@@ -1,5 +1,7 @@
 //sebuah type baru object 
 //bisa untuk array
+//interface untuk standarisasi untuk menthod
+//abstract untuk standarisasi juga , yang properti ny bisa di beri acces modifier
 
 interface Person {
     firstName : string;

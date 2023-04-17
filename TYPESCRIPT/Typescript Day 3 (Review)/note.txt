@@ -1,0 +1,10 @@
+Membuat file js nya 
+
+kemudian melakukan init di folder yang terdapat file js 
+dengan "npm init -y" inisiasi default
+
+lalu untuk menggunakan express js lakukan install 
+"npm install express"
+
+
+
