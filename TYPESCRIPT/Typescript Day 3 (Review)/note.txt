@@ -1,10 +1,55 @@
-Membuat file js nya 
+1.Membuat file js nya 
 
-kemudian melakukan init di folder yang terdapat file js 
+2. kemudian melakukan init di folder yang terdapat file js 
 dengan "npm init -y" inisiasi default
 
-lalu untuk menggunakan express js lakukan install 
+3. lalu untuk menggunakan express js lakukan install 
 "npm install express"
 
+4. install nodemon untuk memudahkan run
+5. tambahkan start di packetjson untuk mempersingkat run
+6. tambahkan file .env sebagai environment untuk port,password dll
+
+dalam file index.js 
+1. import express agar bisa di gunakan
+2. import dotenv agar bisa memanggil yng ada di environment
+
+setelah configurasi diexpress di index.js,
+selanjutny membuat router
+1.buat folder router dan file js ny 
+2.import Router dari express
+3. lakukan configurasi untuk route default
+4. kembali lagi ke index.js , lakukan import router agar kita bisa 
+memanggil route yang sudah di buat di router.js
+
+menyambungkan ke database
+1. buka packedjson dan tambahkan dataModeling untuk membuat models dari database 
+2. setelah jadi , akan ada folder moduls 
+3. buka init-module lalukan inisiasi agar connect database
+====
+import{Sequelize} from "sequelize"
+const sequelize=new Sequelize(
+  process.env.DATABASE_NAME,
+  process.env.DATABASE_USER,
+  process.env.DATABASE_PASSWORD,
+  {
+    dialect:"postgres",
+    pool:{
+      max:5,
+      min:0,
+      acquire:30000,
+      idle:10000
+    }
+  }
+)
+
+const models = initModels(sequelize)
+export default models;
+export{sequelize}
+=====
+
+setelah melakukan diatas database sudah bisa connect 
+
+kemudian bkin CURD untuk tabel
 
 
