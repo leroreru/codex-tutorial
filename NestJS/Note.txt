@@ -1,0 +1,48 @@
+Controller
+yang respon dan sebagai path atau tempat routing
+terdapat decorator (@) berfungsi sebagai method
+@Controller('User) > path ny adalah User
+@Get() > menggunakan decorator dari 'user'
+untuk membuat controller dengan CLI
+ nest g controller cats.
+
+
+Provider(Service)
+Terhubung langsung ke database
+Mengembalikan hasil proses request yang di terima dari controller
+@Injectable() > artinya dapat diinject di controller
+ nest g service cats
+
+
+Module 
+untu mendaftarkan semua controller dan providers yang digunakan
+nest g module cats
+Module lain dapat di import dalam sebuah module 
+
+generate(Controller , Provider , Module)
+nest g resource product => generate semua otomatis
+
+step install nest js 
+
+npm i -g @nestjs/cli
+nest new project-name > pilih npm
+
+untuk model database
+npm install --save @nestjs/sequelize sequelize sequelize-typescript pg
+
+npm install sequelize-typescript-generator >> untuk generate models dari database
+
+ SequelizeModule.forRootAsync({
+      useFactory: () => ({
+        dialect: 'postgres',
+        host: 'localhost',
+        port: parseInt(process.env.DATABASE_PORT),
+        username: process.env.DATABASE_USER,
+        password: process.env.DATABASE_PASS,
+        database: process.env.DATABASE,
+        models: [],
+        autoLoadModels: true,
+      }),
+    }),
+
+    untuk koneksi database nya
