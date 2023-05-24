@@ -10,6 +10,7 @@ import { users } from 'models';
 import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcrypt';
 import { NextFunction, Request, Response } from 'express';
+
 @Injectable()
 export class AuthloginService {
   async login(createAuthloginDto: CreateAuthloginDto) {
@@ -20,7 +21,7 @@ export class AuthloginService {
         where: { username },
       });
       if (!user) {
-        return { message: 'username salah' };
+        return { message: 'Username Salah', status: 400 };
       }
 
       const result = await bcrypt.compare(password, user.password);
@@ -30,9 +31,9 @@ export class AuthloginService {
         { expiresIn: '5m' },
       );
       if (result) {
-        return { message: 'login berhasil', token: token };
+        return { token: token, message: 'Login Berhasil', status: 200 };
       } else {
-        return { message: 'password salah' };
+        return { message: 'Password Salah', status: 400 };
       }
     } catch (error) {
       return error.message;

@@ -52,7 +52,7 @@ export class ProductController {
   }
 
   @Get('findall')
-  @UseGuards(AuthGuard)
+  // @UseGuards(AuthGuard)
   findAll() {
     return this.productService.findAll();
   }

@@ -67,8 +67,13 @@ export class OrdersService {
   // findOne(id: number) {
   // }
 
-  update(id: number, updateOrderDto: CreateOrderDto) {
-    return `This action updates a #${id} order`;
+  async update(id: number, updateOrderDto: CreateOrderDto) {
+    try {
+      const idbody = orders.findOne({ where: { id: id } });
+      if (!idbody) throw new Error('ID TIDAK DITEMUKAN');
+    } catch (error) {
+      return error.message;
+    }
   }
 
   async remove(id: number) {

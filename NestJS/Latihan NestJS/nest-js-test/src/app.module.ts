@@ -14,9 +14,15 @@ import {
 } from './authlogin/authlogin.service';
 import { AuthloginController } from './authlogin/authlogin.controller';
 import { AuthloginModule } from './authlogin/authlogin.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(process.cwd(), 'uploads'),
+      serveRoot: '/uploads',
+    }),
     SequelizeModule.forRootAsync({
       useFactory: () => ({
         dialect: 'postgres',
@@ -40,9 +46,9 @@ import { AuthloginModule } from './authlogin/authlogin.module';
   controllers: [AppController, AuthloginController],
   providers: [AppService, AuthloginService],
 })
-// export class AppModule {}
-export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(LoggerMiddleware).forRoutes('user-dto');
-  }
-}
+export class AppModule {}
+// export class AppModule implements NestModule {
+//   configure(consumer: MiddlewareConsumer) {
+//     consumer.apply(LoggerMiddleware).forRoutes('');
+//   }
+// }

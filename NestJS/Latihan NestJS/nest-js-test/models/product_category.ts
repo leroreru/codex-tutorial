@@ -16,6 +16,7 @@ export interface product_categoryAttributes {
   description?: string;
   createat?: Date;
   updateat?: Date;
+  image?: string;
 }
 
 @Table({ tableName: 'product_category', schema: 'public', timestamps: false })
@@ -52,6 +53,9 @@ export class product_category
     defaultValue: Sequelize.literal('now()'),
   })
   updateat?: Date;
+
+  @Column({ allowNull: true, type: DataType.STRING(200) })
+  image?: string;
 
   @HasMany(() => product, { sourceKey: 'id' })
   products?: product[];

@@ -1,0 +1,19 @@
+npm i --save @fortawesome/fontawesome-svg-core
+npm i --save @fortawesome/free-solid-svg-icons
+npm i --save @fortawesome/react-fontawesome@latest
+
+npm i yarn 
+yarn add styled components
+
+npm install react-router-dom
+
+inisialisasi react
+npx create-reac-app [namaproject]
+
+
+untuk api 
+bkin folder 
+config dan api 
+
+menggunakan library
+npm i axios

@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
 import { product } from 'models';
 import * as fs from 'fs';
+import handleMessage from 'src/mhelper/mhelper';
 
 @Injectable()
 export class ProductService {
@@ -22,22 +23,23 @@ export class ProductService {
         price: createProductDto.price,
         image: createProductDto.image,
       });
-      return { message: 'data berhasil diinput', data: result };
+
+      return handleMessage(result, 'Data Berhasil diInput', 200);
     } catch (error) {
       const oldImage = `./uploads/` + createProductDto.image;
       if (fs.existsSync(oldImage)) {
         fs.unlinkSync(oldImage);
       }
-      return error.message;
+      return handleMessage(error.message, 'Data gagal diInput', 400);
     }
   }
 
   async findAll() {
     try {
       const result = await product.findAll();
-      return result;
+      return handleMessage(result, 'Berhasil', 200);
     } catch (error) {
-      return error.message;
+      return handleMessage(error.message, 'Gagal', 400);
     }
   }
 
@@ -57,11 +59,6 @@ export class ProductService {
       const idbody = await product.findByPk(id);
       if (!idbody) throw new Error('ID TIDAK ADA');
 
-      const oldImage = `./uploads/` + idbody.image;
-      if (fs.existsSync(oldImage)) {
-        fs.unlinkSync(oldImage);
-      }
-
       const result = await product.update(
         {
           name: updateProductDto.name,
@@ -75,10 +72,17 @@ export class ProductService {
           returning: true,
         },
       );
-
-      return ['data berhasil di update', result];
+      const oldImage = `./uploads/` + idbody.image;
+      if (fs.existsSync(oldImage)) {
+        fs.unlinkSync(oldImage);
+      }
+      return handleMessage(result, 'Data Berhasil diUpdate', 200);
     } catch (error) {
-      return error.message;
+      const oldImage = `./uploads/` + updateProductDto.image;
+      if (fs.existsSync(oldImage)) {
+        fs.unlinkSync(oldImage);
+      }
+      return handleMessage(error.message, 'Data Gagal diUpdate', 400);
     }
   }
 
@@ -96,9 +100,9 @@ export class ProductService {
         where: { id: id },
       });
 
-      return 'data berhasil dihapus';
+      return handleMessage(idbody, 'Data Berhasil diHapus', 200);
     } catch (error) {
-      return error.message;
+      return handleMessage(error.message, 'Data Gagal diHapus', 400);
     }
   }
 }

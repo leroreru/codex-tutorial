@@ -2,18 +2,26 @@ import { Injectable } from '@nestjs/common';
 import { CreateProdCatDtoDto } from './dto/create-prod-cat-dto.dto';
 import { UpdateProdCatDtoDto } from './dto/update-prod-cat-dto.dto';
 import { product_category } from 'models';
+import handleMessage from 'src/mhelper/mhelper';
 
 @Injectable()
 export class ProdCatDtoService {
   async create(createProdCatDtoDto: CreateProdCatDtoDto) {
     try {
+      const handleUsername = await product_category.findOne({
+        where: { name: createProdCatDtoDto.name },
+      });
+      if (handleUsername) {
+        throw new Error('Produk Sudah Ada');
+      }
+
       const result = await product_category.create({
         name: createProdCatDtoDto.name,
         description: createProdCatDtoDto.description,
       });
-      return ['data berhasil diinput', result];
+      return handleMessage(result, 'Data berhasil dibuat', 200);
     } catch (error) {
-      return error.message;
+      return handleMessage(error.message, 'Gagal', 200);
     }
   }
 
@@ -21,9 +29,9 @@ export class ProdCatDtoService {
     try {
       const result = await product_category.findAll();
 
-      return [result];
+      return handleMessage(result, 'Berhasil', 200);
     } catch (error) {
-      return error.message;
+      return handleMessage(error.message, 'Gagal', 400);
     }
   }
 
