@@ -22,9 +22,6 @@ const UpdateProduct = (props) => {
   const location = useLocation();
 
   useEffect(() => {
-    // const getData = async () => { //noredux
-      // const result = await apiMethod.findAllUser();
-      // setUser(result.data.result);
       dispatch(getAllCategory())
   }, [refresh]);
 

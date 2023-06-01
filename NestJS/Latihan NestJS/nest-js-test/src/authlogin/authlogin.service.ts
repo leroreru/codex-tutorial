@@ -28,7 +28,7 @@ export class AuthloginService {
       const token = jwt.sign(
         { username: user.username },
         process.env.TOKEN_RAHASIA,
-        { expiresIn: '5m' },
+        { expiresIn: '30s' },
       );
       if (result) {
         return { token: token, message: 'Login Berhasil', status: 200 };

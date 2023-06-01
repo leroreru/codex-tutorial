@@ -4,12 +4,13 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { doRequestAddUser, doRequestGetLogin } from "./redux/action/actionReducer";
-import alert from "./config/alert";
+import TestAlert from "./config/alert";
 import { useDescriptions } from "@headlessui/react/dist/components/description/description";
+import { ToastContainer } from "react-toastify";
 
 const register = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { message,status,refresh } = useSelector((state: any) => state.userReducers);
+  const { message,status,refresh,message2 } = useSelector((state: any) => state.userReducers);
 
   const dispatch = useDispatch();
   const router = useRouter();
@@ -32,12 +33,31 @@ const register = () => {
     setShowPassword(!showPassword);
   };
 
+  const [errorLogin,setErrorLogin]=useState()
+
   const handleRegistration = async (data: any) => {
     dispatch(doRequestAddUser(data));
-   
-    router.push("/register");
-};
 
+  };
+
+  
+  useEffect(()=>{
+
+    setTimeout(()=>{
+  
+      if(status === 200){
+        TestAlert.succesAlert(message)
+        setTimeout(()=>{
+          router.push('/login')
+        },2000)
+        }
+      else if (status === 400) {
+        TestAlert.unSuccesAlert(message2)
+      }
+    },
+    500)
+
+},[handleRegistration,refresh])
 
 
   const registerOptions = {
@@ -55,18 +75,19 @@ const register = () => {
 
   return (
     <div>
+      <ToastContainer></ToastContainer>
       <form onSubmit={handleSubmit(handleRegistration)}>
-        <div className="bg-green-900 absolute top-0 left-0 bg-gradient-to-b from-gray-900 via-gray-900 to-green-800 bottom-0 leading-5 h-full w-full overflow-hidden">
+        <div className="absolute top-0 left-0 bg-gradient-to-b from-gray-900 via-gray-900 to-green-800 bottom-0 leading-5 h-full w-full overflow-hidden">
           <div className="relative min-h-screen sm:flex sm:flex-row justify-center bg-transparent rounded-3xl shadow-xl">
             <div className="flex-col flex self-center lg:px-14 sm:max-w-4xl xl:max-w-md z-10">
-              <div className="self-start hidden lg:flex flex-col text-gray-300">
+              {/* <div className="self-start hidden lg:flex flex-col text-gray-300">
                 <h1 className="my-3 font-semibold text-4xl">Welcome back</h1>
                 <p className="pr-3 text-sm opacity-75">
                   Lorem ipsum is placeholder text commonly used in the graphic,
                   print, and publishing industries for previewing layouts and
                   visual mockups
                 </p>
-              </div>
+              </div> */}
             </div>
             <div className="flex justify-center self-center z-10">
               <div className="p-12 bg-white mx-auto rounded-3xl w-96">

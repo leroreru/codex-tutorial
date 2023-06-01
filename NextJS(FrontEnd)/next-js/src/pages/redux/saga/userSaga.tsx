@@ -8,6 +8,7 @@ import {
 } from "../action/actionReducer";
 
 //*fungsi ny selalu merespon actiontype
+//fungsi generator
 export function* handleGetAllUser(): any {
   try {
     const result = yield call(apiMethod.findAllUser);
@@ -29,7 +30,7 @@ export function* handleAddUser(action: any): any {
 export function* handleUpdateUser(action: any): any {
   try {
     const result = yield call(apiMethod.updateUser, action.payload);
-    yield put(doResponseUpdateUser(result.data.result[0]));
+    yield put(doResponseUpdateUser(result.data));
   } catch (error) {
     yield put(doResponseUpdateUser({ message: error, status: 400 }));
   }
@@ -38,7 +39,8 @@ export function* handleUpdateUser(action: any): any {
 export function* handleDeleteUser(action: any): any {
   try {
     const result = yield call(apiMethod.deleteUser, action.payload);
-    yield put(doResponseDeleteUser(result.data.result[0]));
+    console.log(result)
+    yield put(doResponseDeleteUser(result.data));
   } catch (error) {
     yield put(doResponseDeleteUser({ message: error, status: 400 }));
   }

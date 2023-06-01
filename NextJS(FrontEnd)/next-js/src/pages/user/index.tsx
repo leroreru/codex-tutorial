@@ -7,7 +7,7 @@ import EditUser from "./editUser";
 import { ToastContainer } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { doRequestGetUser } from "../redux/action/actionReducer";
-import alert from "../config/alert";
+import TestAlert from "../config/alert";
 import { ArrowRightIcon , ArrowLeftIcon } from "@heroicons/react/24/solid"
 import Pagination from "../shared/pagination";
 
@@ -35,9 +35,9 @@ const Users = () => {
     if (message) {
       setTimeout(() => {
         if (status === 200) {
-          alert.succesAlert(message);
+          TestAlert.succesAlert(message);
         } else {
-          alert.unSuccesAlert(message);
+          TestAlert.unSuccesAlert(message);
         }
       }, 500);
     }

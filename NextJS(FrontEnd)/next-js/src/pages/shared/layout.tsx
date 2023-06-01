@@ -4,6 +4,8 @@ import SideBar from "./sidebar";
 import TopBar from "./topbar";
 import { Transition } from "@headlessui/react";
 import { useRouter } from "next/router";
+import Alert from '../config/alert'
+import { ToastContainer } from "react-toastify";
 
 export default function Layout({ children }: any) {
   const [showNav, setShowNav] = useState(true);
@@ -20,21 +22,44 @@ export default function Layout({ children }: any) {
     }
   }
 
-  useEffect(() => {
+  // const checkTokenExpiration = 
+  // setInterval(() => {
+    
+    //   if (currentTime >= expirationTime) {
+      //     // Token telah kedaluwarsa
+      //     localStorage.removeItem('TokenNext');
+      //     localStorage.removeItem('TokenNextExpiration');
+      //     router.reload()
+      //     clearInterval(checkTokenExpiration); // Berhenti memeriksa waktu saat token telah kedaluwarsa
+      //   }
+      // },1000); // Memeriksa waktu setiap detik
+      
+    useEffect(() => {
+
+    const expirationTime:any = localStorage.getItem('TokenNextExpiration');
+    const currentTime:any = Date.now();
+
     if (typeof window != undefined) {
       addEventListener("resize", handleResize);
     }
     if(!localStorage.getItem('TokenNext')){
       router.push('/login')
-    }
+    } else if (currentTime >= expirationTime) {
+      // Token telah kedaluwarsa
+      localStorage.removeItem('TokenNext');
+      localStorage.removeItem('TokenNextExpiration');
 
+     router.push('/login'); // Reload the page after a delay
+    }
+    
     return () => {
       removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [router]);
 
   return (
     <>
+      <ToastContainer></ToastContainer>
       <TopBar showNav={showNav} setShowNav={setShowNav} />
       <Transition
         as={Fragment}

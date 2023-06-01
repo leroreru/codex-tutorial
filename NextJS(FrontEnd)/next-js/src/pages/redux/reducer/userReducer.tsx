@@ -5,6 +5,7 @@ const initialState = {
   message: "",
   status: "",
   refresh: "",
+  message2:"",
 }; // sebagai kolom di reducer
 
 function userReducers(state = initialState, action: any) {
@@ -16,6 +17,7 @@ function userReducers(state = initialState, action: any) {
       return {
         message: payload.message,
         status: payload.status,
+        message2:payload.result,
         refresh: false,
       };
     case ActionTypes.RES_UPDATE_USER:

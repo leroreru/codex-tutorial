@@ -17,3 +17,53 @@ config dan api
 
 menggunakan library
 npm i axios
+
+
+ react hook >> function 
+
+
+useEffect 
+2 parameter > anon function + dependensi
+dependensi kosong > jalan sekali
+klo tidak ada > jalan trus 
+kalo > akan jalan jika ditrigger 
+
+useState 
+untuk inisialiasi nilai awal
+const [variable , method untuk set variable ] = useState();
+
+Props
+yang mengirim = parent 
+yang menerima = child
+
+useSelector
+untuk mengambil nilai dari keadaan (state) global dalam Redux Store ke dalam komponen.
+
+register 
+untuk membaca data ketika di submit
+menampung data dari from
+
+
+//NEXTJS
+next ga pake routing 
+menggunakan ts
+bisa jadi back end bisa jadi front end
+
+jsx (frontend) > js yang dalam ny ada html
+tsx (backaend) > ts yang adlam ny ada html
+
+redux
+untuk membuat database difrontend
+untuk mengelola state nya 
+agar pengolaan data nay cepat 
+
+Action > untuk mengakses ke backend
+Reducer > mengupdate state
+Store > untuk meregister reducer 
+mengirim data ke reducer menggunakan dispatch
+
+Redux saga >  redux yng menggunakan middleware saga ( sebagai menangani asikron)
+redux tunk > redux tidak memakai middleware
+
+takeLatest > memanggil aksi yang paling baru dengan mengcancel aksi lama 
+takeEvery > untuk mengambil semua aksi tanpa harus mengcancel aksi lama

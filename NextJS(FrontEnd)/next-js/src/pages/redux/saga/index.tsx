@@ -1,5 +1,5 @@
 import ActionType from "../action/actionType";
-import { takeEvery, all } from "redux-saga/effects";
+import { takeEvery, all, takeLatest } from "redux-saga/effects";
 import {
   handleGetAllUser,
   handleAddUser,

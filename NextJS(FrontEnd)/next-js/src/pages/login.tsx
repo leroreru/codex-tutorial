@@ -4,14 +4,17 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { doRequestGetLogin } from "./redux/action/actionReducer";
+import { ToastContainer } from "react-toastify";
+import TestAlert from './config/alert'
 
 const login = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { message } = useSelector((state:any)=>state.loginReducers)
+  const { token,refresh } = useSelector((state:any)=>state.loginReducers)
+
+  
 
   const dispatch = useDispatch();
   const router = useRouter();
-
   type FormValues = {
     username: string;
     password: string;
@@ -33,13 +36,21 @@ const login = () => {
     dispatch(doRequestGetLogin(data))
   };
 
+
+  const [usernameX,setUsername]:any= useState('')
+  
   useEffect(():any=>{
     const tokennext = localStorage.getItem('TokenNext')
-
+    
     if(tokennext){
       router.push('/')
     }
+   
+    setUsername(token.message)
+
+
   },[handleRegistration])
+
 
   const registerOptions = {
     username: { required: "username is required" },
@@ -48,18 +59,19 @@ const login = () => {
 
   return (
     <div>
+      <ToastContainer></ToastContainer>
       <form onSubmit={handleSubmit(handleRegistration)}>
         <div className="bg-green-900 absolute top-0 left-0 bg-gradient-to-b from-gray-900 via-gray-900 to-green-800 bottom-0 leading-5 h-full w-full overflow-hidden">
           <div className="relative min-h-screen sm:flex sm:flex-row justify-center bg-transparent rounded-3xl shadow-xl">
             <div className="flex-col flex self-center lg:px-14 sm:max-w-4xl xl:max-w-md z-10">
-              <div className="self-start hidden lg:flex flex-col text-gray-300">
-                <h1 className="my-3 font-semibold text-4xl">Welcome back</h1>
+              {/* <div className="self-start hidden lg:flex flex-col text-gray-300">
+                <h1 className="my-3 font-semibold text-4xl">Selamat Datang</h1>
                 <p className="pr-3 text-sm opacity-75">
                   Lorem ipsum is placeholder text commonly used in the graphic,
                   print, and publishing industries for previewing layouts and
                   visual mockups
                 </p>
-              </div>
+              </div> */}
             </div>
             <div className="flex justify-center self-center z-10">
               <div className="p-12 bg-white mx-auto rounded-3xl w-96">
@@ -79,6 +91,9 @@ const login = () => {
                 </div>
                 <div className="space-y-6">
                   <div>
+                  <p className="py-2 -mt-6 text-center text-red-800">
+                     {usernameX}
+                    </p>
                     <input
                       className="w-full text-sm px-4 py-3 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:border-green-400"
                       type="Username"
@@ -97,7 +112,7 @@ const login = () => {
                       className="text-sm  px-4 py-3 rounded-lg w-full bg-gray-200 focus:bg-gray-100 border border-gray-200 focus:outline-none focus:border-green-400"
                     />
                     <p className="px-2 text-red-800">
-                      {errors?.password && errors.password.message}
+                      { errors?.password && errors.password.message}
                     </p>
 
                     <div className="flex items-center absolute inset-y-0 right-0 mr-3 text-sm leading-5">

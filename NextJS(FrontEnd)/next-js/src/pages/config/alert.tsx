@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const succesAlert =(message:any)=> {
     toast.success(`${message}`, {
         position: "bottom-left",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -19,7 +19,7 @@ const succesAlert =(message:any)=> {
 const unSuccesAlert =(message:any)=> {
     toast.error( `${message}`, {
         position: "bottom-left",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,

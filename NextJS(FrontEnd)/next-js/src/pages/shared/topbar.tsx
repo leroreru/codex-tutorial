@@ -18,6 +18,7 @@ const TopBar = ({ showNav, setShowNav }: any) => {
 
   const logout = () => {
     localStorage.removeItem("TokenNext");
+    localStorage.removeItem("TokenNextExpiration");
     router.push("/login");
   };
 
