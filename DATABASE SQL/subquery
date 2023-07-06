@@ -1,0 +1,14 @@
+/* SUBQUERY */
+select 
+w.id,
+wp.age,
+w.coins_needed,
+w.power
+from wands w
+join wands_property wp using(code)
+where wp.is_evil='0' and (w.power,wp.age,w.coins_needed) in 
+(select w.power,wp.age,min(w.coins_needed) from Wands w inner join Wands_Property wp using(code) where wp.is_evil='0'
+group by w.power, wp.age 
+order by w.power, wp.age)
+ 
+order by w.power desc,wp.age desc
